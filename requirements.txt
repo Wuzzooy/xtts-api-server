@@ -1,7 +1,7 @@
-PyAudio==0.2.14
-requests==2.31.0
-pyttsx3==2.90
-stream2sentence==0.2.2
+PyAudio
+requests
+pyttsx3
+stream2sentence
 fastapi>=0.104.1
 loguru
 pydantic
@@ -12,7 +12,8 @@ torchaudio
 uvicorn
 cutlet
 fugashi[unidic-lite]
-coqui-tts[languages]==0.24.1
-transformers==4.36.2
+coqui-tts==0.26.0
+transformers==4.48.0
 uuid
-spacy==3.7.2 
+spacy==3.7.5
+coqpit-config>=0.2.0,<0.3.0
