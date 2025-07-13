@@ -1,4 +1,5 @@
 @echo off
+
 REM XTTS Launcher
 REM Created by: Deffcolony
 REM
@@ -53,6 +54,7 @@ set "xtts_deepspeed_trigger=false"
 set "xtts_cache_trigger=false"
 set "xtts_listen_trigger=false"
 set "xtts_model_trigger=false"
+set "xtts_streaming_trigger=false"
 
 
 REM Create modules-xtts.txt if it doesn't exist
@@ -290,7 +292,7 @@ call "%miniconda_path%\Scripts\activate.bat"
 
 REM Create a Conda environment named xtts
 echo %blue_bg%[%time%]%reset% %blue_fg_strong%[INFO]%reset% Creating Conda environment: %cyan_fg_strong%xtts%reset%
-call conda create -n xtts python=3.10 -y
+call conda create -n xtts python=3.11.9 -y
 
 REM Activate the xtts environment
 echo %blue_bg%[%time%]%reset% %blue_fg_strong%[INFO]%reset% Activating Conda environment: %cyan_fg_strong%xtts%reset%
@@ -315,11 +317,11 @@ if "%GPU_CHOICE%"=="1" (
 :install_xtts_final
 REM Clone the xtts-api-server repository for voice examples
 echo %blue_bg%[%time%]%reset% %blue_fg_strong%[INFO]%reset% Cloning xtts-api-server repository...
-git clone https://github.com/daswer123/xtts-api-server.git
+git clone https://github.com/Wuzzooy/xtts-api-server.git
 cd /d "%~dp0xtts-api-server"
 
 REM Install pip requirements
-echo %blue_bg%[%time%]%reset% %cyan_fg_strong%[xtts]%reset% %blue_fg_strong%[INFO]%reset% Installing pip requirements in conda enviroment: %cyan_fg_strong%xtts%reset%
+echo %blue_bg%[%time%]%reset% %cyan_fg_strong%[xtts]%reset% %blue_fg_strong%[INFO]%reset% Installing pip requirements in conda environment: %cyan_fg_strong%xtts%reset%
 pip install -r requirements.txt
 pip install xtts-api-server
 pip install pydub
@@ -451,11 +453,12 @@ call :printModule "3. deepspeed (--deepspeed)" %xtts_deepspeed_trigger%
 call :printModule "4. cache (--use-cache)" %xtts_cache_trigger%
 call :printModule "5. listen (--listen)" %xtts_listen_trigger%
 call :printModule "6. model (--model-source local)" %xtts_model_trigger%
+call :printModule "7. model (--streaming-mode)" %xtts_streaming_trigger%
 echo 0. Back to Home
 
 set "python_command="
 
-set /p xtts_module_choices=Choose modules to enable/disable (1-6): 
+set /p xtts_module_choices=Choose modules to enable/disable (1-7): 
 
 REM Handle the user's module choices and construct the Python command
 for %%i in (%xtts_module_choices%) do (
@@ -493,13 +496,20 @@ for %%i in (%xtts_module_choices%) do (
         ) else (
             set "xtts_listen_trigger=true"
         )
+        REM set "python_command= --model-source local"		
     ) else if "%%i"=="6" (
         if "%xtts_model_trigger%"=="true" (
             set "xtts_model_trigger=false"
         ) else (
             set "xtts_model_trigger=true"
         )
-        REM set "python_command= --model-source local"
+        REM set "python_command= --streaming-mode"
+    ) else if "%%i"=="7" (
+        if "%xtts_streaming_trigger%"=="true" (
+            set "xtts_streaming_trigger=false"
+        ) else (
+            set "xtts_streaming_trigger=true"
+        )		
     ) else if "%%i"=="0" (
         goto :home
     )
@@ -512,6 +522,7 @@ echo xtts_deepspeed_trigger=%xtts_deepspeed_trigger%>>"%~dp0modules-xtts.txt"
 echo xtts_cache_trigger=%xtts_cache_trigger%>>"%~dp0modules-xtts.txt"
 echo xtts_listen_trigger=%xtts_listen_trigger%>>"%~dp0modules-xtts.txt"
 echo xtts_model_trigger=%xtts_model_trigger%>>"%~dp0modules-xtts.txt"
+echo xtts_streaming_trigger=%xtts_streaming_trigger%>>"%~dp0modules-xtts.txt"
 
 REM remove modules_enable
 set "modules_enable="
@@ -535,6 +546,9 @@ if "%xtts_listen_trigger%"=="true" (
 )
 if "%xtts_model_trigger%"=="true" (
     set "python_command=%python_command% --model-source local"
+)
+if "%xtts_model_trigger%"=="true" (
+    set "python_command=%python_command% --streaming-mode --stream-play-sync"
 )
 
 REM is modules_enable empty?
