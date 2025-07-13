@@ -76,7 +76,7 @@ def install_deepspeed_based_on_python_version():
 def upgrade_tts_package():
     try:
         logger.warning("TTS version is outdated, attempting to upgrade TTS...")
-        subprocess.check_call([sys.executable, "-m", "pip", "install","-q", "--force-reinstall","--no-deps", "tts==0.21.3"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install","-q", "--force-reinstall","--no-deps", "coqui-tts==0.26.0"])
         logger.info("TTS has been successfully upgraded ")
     except Exception as e:
         logger.error(f"An error occurred while upgrading TTS: {e}")
@@ -96,13 +96,13 @@ def upgrade_stream2sentence_package():
 
 def check_tts_version():
     try:
-        tts_version = metadata.version("tts")
+        tts_version = metadata.version("coqui-tts")
         # print(f"[XTTS] TTS version: {tts_version}")
 
-        if version.parse(tts_version) != version.parse("0.21.3"):
+        if version.parse(tts_version) != version.parse("0.26.0"):
             upgrade_tts_package()
-            # print("[XTTS] TTS version is too old. Please upgrade to version 0.21.2 or later.")
-            # print("[XTTS] pip install --upgrade tts")
+            # print("[XTTS] TTS version is too old. Please upgrade to version 0.26.0 or later.")
+            # print("[XTTS] pip install --upgrade coqui-tts")
         # else:
             # logger.info("TTS version is up to date.")
     except metadata.PackageNotFoundError:
@@ -112,7 +112,7 @@ def check_tts_version():
 def check_stream2sentence_version():
     try:
         tts_version = metadata.version("stream2sentence")
-        if version.parse(tts_version) < version.parse("0.2.2"):
+        if version.parse(tts_version) < version.parse("0.3.1"):
             upgrade_stream2sentence_package()
     except metadata.PackageNotFoundError:
         print("stream2sentence is not installed.")
