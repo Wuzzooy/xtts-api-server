@@ -544,7 +544,7 @@ if "%xtts_listen_trigger%"=="true" (
 if "%xtts_model_trigger%"=="true" (
     set "python_command=%python_command% --model-source local"
 )
-if "%xtts_model_trigger%"=="true" (
+if "%xtts_streaming_trigger%"=="true" (
     set "python_command=%python_command% --streaming-mode --stream-play-sync"
 )
 
