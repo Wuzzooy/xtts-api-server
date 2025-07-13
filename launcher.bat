@@ -197,9 +197,8 @@ echo ---------------------------------------------------------------
 echo What would you like to do?
 echo 1. Install XTTS
 echo 2. Start XTTS
-echo 3. Update
-echo 4. Edit XTTS Modules 
-echo 5. Uninstall XTTS
+echo 3. Edit XTTS Modules 
+echo 4. Uninstall XTTS
 echo 0. Exit
 
 set "choice="
@@ -214,10 +213,8 @@ if "%choice%"=="1" (
 ) else if "%choice%"=="2" (
     call :start_xtts
 ) else if "%choice%"=="3" (
-    call :update_xtts
-) else if "%choice%"=="4" (
     call :edit_xtts_modules
-) else if "%choice%"=="5" (
+) else if "%choice%"=="4" (
     call :uninstall_xtts
 ) else if "%choice%"=="0" (
     exit
