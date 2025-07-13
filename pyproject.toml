@@ -44,4 +44,4 @@ Homepage = "https://github.com/daswer123/xtts-api-server"
 "Bug Tracker" = "https://github.com/daswer123/xtts-api-server/issues"
 
 [tool.hatch.build.targets.wheel]
-only-include=["xtts_api_server"]
+only-include=["xtts_api_server_updated"]
