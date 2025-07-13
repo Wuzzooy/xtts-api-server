@@ -323,7 +323,7 @@ cd /d "%~dp0xtts-api-server"
 REM Install pip requirements
 echo %blue_bg%[%time%]%reset% %cyan_fg_strong%[xtts]%reset% %blue_fg_strong%[INFO]%reset% Installing pip requirements in conda environment: %cyan_fg_strong%xtts%reset%
 pip install -r requirements.txt
-pip install xtts-api-server
+pip install git+https://github.com/Wuzzooy/xtts-api-server.git
 pip install pydub
 pip install stream2sentence
 
