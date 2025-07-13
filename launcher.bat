@@ -450,7 +450,7 @@ call :printModule "3. deepspeed (--deepspeed)" %xtts_deepspeed_trigger%
 call :printModule "4. cache (--use-cache)" %xtts_cache_trigger%
 call :printModule "5. listen (--listen)" %xtts_listen_trigger%
 call :printModule "6. model (--model-source local)" %xtts_model_trigger%
-call :printModule "7. model (--streaming-mode)" %xtts_streaming_trigger%
+call :printModule "7. streaming (--streaming-mode)" %xtts_streaming_trigger%
 echo 0. Back to Home
 
 set "python_command="
