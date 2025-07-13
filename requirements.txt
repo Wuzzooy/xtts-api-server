@@ -17,3 +17,4 @@ transformers==4.48.0
 uuid
 spacy==3.7.5
 coqpit-config>=0.2.0,<0.3.0
+resampy
