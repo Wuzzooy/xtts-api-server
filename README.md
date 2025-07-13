@@ -24,7 +24,7 @@ You can keep track of all changes on the [release page](https://github.com/daswe
 Simple installation :
 
 ```bash
-pip install xtts-api-server
+pip install git+https://github.com/Wuzzooy/xtts-api-server.git
 ```
 
 This will install all the necessary dependencies, including a **CPU support only** version of PyTorch
@@ -35,7 +35,7 @@ I recommend that you install the **GPU version** to improve processing speed ( u
 ```bash
 python -m venv venv
 venv\Scripts\activate
-pip install xtts-api-server
+pip install git+https://github.com/Wuzzooy/xtts-api-server.git
 pip install torch==2.1.1+cu118 torchaudio==2.1.1+cu118 --index-url https://download.pytorch.org/whl/cu118
 ```
 
