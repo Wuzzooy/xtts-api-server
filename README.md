@@ -1,3 +1,4 @@
+(This fork udpated some requirements, RealtimeTTS libraries, stream2sentence and use the fork of coqui https://github.com/idiap/coqui-ai-TTS)
 # A simple FastAPI Server to run XTTSv2
 
 This project is inspired by [silero-api-server](https://github.com/ouoertheo/silero-api-server) and utilizes [XTTSv2](https://github.com/coqui-ai/TTS).
