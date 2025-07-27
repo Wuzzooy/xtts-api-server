@@ -36,8 +36,8 @@ I recommend that you install the **GPU version** to improve processing speed ( u
 ```bash
 python -m venv venv
 venv\Scripts\activate
-pip install git+https://github.com/Wuzzooy/xtts-api-server.git
-pip install torch==2.1.1+cu118 torchaudio==2.1.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+pip install git+https://github.com/Wuzzooy/xtts-api-server.git@blackwell_gpu
+pip install torch==2.7.1+cu128 torchaudio==2.7.1+cu128 --index-url https://download.pytorch.org/whl/cu128
 ```
 
 ### Linux
@@ -46,20 +46,20 @@ sudo apt install -y python3-dev python3-venv portaudio19-dev
 python -m venv venv
 source venv\bin\activate
 pip install xtts-api-server
-pip install torch==2.1.1+cu118 torchaudio==2.1.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+pip install torch==2.7.1+cu128 torchaudio==2.7.1+cu128 --index-url https://download.pytorch.org/whl/cu128
 ```
 
 ### Manual
 ```bash
 # Clone REPO
-git clone https://github.com/daswer123/xtts-api-server
+git clone https://github.com/Wuzzooy/xtts-api-server.git@blackwell_gpu
 cd xtts-api-server
 # Create virtual env
 python -m venv venv
 venv/scripts/activate or source venv/bin/activate
 # Install deps
 pip install -r requirements.txt
-pip install torch==2.1.1+cu118 torchaudio==2.1.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+pip install torch==2.7.1+cu128 torchaudio==2.7.1+cu128 --index-url https://download.pytorch.org/whl/cu128
 # Launch server
 python -m xtts_api_server
  
