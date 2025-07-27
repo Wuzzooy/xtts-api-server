@@ -306,13 +306,13 @@ if "%GPU_CHOICE%"=="1" (
 :install_xtts_final
 REM Clone the xtts-api-server repository for voice examples
 echo %blue_bg%[%time%]%reset% %blue_fg_strong%[INFO]%reset% Cloning xtts-api-server repository...
-git clone https://github.com/Wuzzooy/xtts-api-server.git
+git clone https://github.com/Wuzzooy/xtts-api-server.git@blackwell_gpu
 cd /d "%~dp0xtts-api-server"
 
 REM Install pip requirements
 echo %blue_bg%[%time%]%reset% %cyan_fg_strong%[xtts]%reset% %blue_fg_strong%[INFO]%reset% Installing pip requirements in conda environment: %cyan_fg_strong%xtts%reset%
 pip install -r requirements.txt
-pip install git+https://github.com/Wuzzooy/xtts-api-server.git
+pip install git+https://github.com/Wuzzooy/xtts-api-server.git@blackwell_gpu
 pip install pydub
 pip install stream2sentence
 
