@@ -1,4 +1,5 @@
 (This fork udpated some requirements, RealtimeTTS libraries, stream2sentence and use the fork of coqui https://github.com/idiap/coqui-ai-TTS)
+
 (for blackwell gpu use the second branch https://github.com/Wuzzooy/xtts-api-server/tree/blackwell_gpu)
 # A simple FastAPI Server to run XTTSv2
 
