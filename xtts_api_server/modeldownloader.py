@@ -47,8 +47,8 @@ def install_deepspeed_based_on_python_version():
         logger.info(f"Python version: {python_version.major}.{python_version.minor}")
 
         # Define your package links here
-        py310_win = "https://github.com/daswer123/xtts-webui/releases/download/deepspeed/deepspeed-0.11.2+cuda118-cp310-cp310-win_amd64.whl"
-        py311_win = "https://github.com/daswer123/xtts-webui/releases/download/deepspeed/deepspeed-0.11.2+cuda118-cp311-cp311-win_amd64.whl"
+        py310_win = "https://github.com/Wuzzooy/xtts-api-server/releases/download/%23DeepSpeed/deepspeed-0.17.3+cuda128-cp310-cp310-win_amd64.whl"
+        py311_win = "https://github.com/Wuzzooy/xtts-api-server/releases/download/%23DeepSpeed/deepspeed-0.17.3+cuda128-cp311-cp311-win_amd64.whl"
 
         # Use generic pip install deepspeed for Linux or custom wheels for Windows.
         deepspeed_link = None
