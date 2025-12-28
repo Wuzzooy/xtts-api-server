@@ -232,6 +232,18 @@ cls
 echo %blue_fg_strong%/ Home / Install XTTS%reset%
 echo ---------------------------------------------------------------
 
+REM Simple GPU detection without broken visual boxes
+setlocal enabledelayedexpansion
+set "gpu_info="
+for /f "skip=1 delims=" %%i in ('wmic path win32_videocontroller get caption') do (
+    for /f "delims=" %%j in ("%%i") do set "gpu_info=!gpu_info! %%j"
+)
+
+echo.
+echo %blue_bg%[SYSTEM INFO]%reset% Detected GPU(s): %gpu_info%
+echo.
+endlocal
+
 REM GPU menu - Frontend
 echo What is your GPU?
 echo 1. NVIDIA
@@ -239,31 +251,13 @@ echo 2. AMD
 echo 3. None (CPU-only mode)
 echo 0. Cancel install
 
-setlocal enabledelayedexpansion
-chcp 65001 > nul
-REM Get GPU information
-for /f "skip=1 delims=" %%i in ('wmic path win32_videocontroller get caption') do (
-    set "gpu_info=!gpu_info! %%i"
-)
-
-echo.
-echo %blue_bg%╔════ GPU INFO ═════════════════════════════════╗%reset%
-echo %blue_bg%║                                               ║%reset%
-echo %blue_bg%║* %gpu_info:~1%                   ║%reset%
-echo %blue_bg%║                                               ║%reset%
-echo %blue_bg%╚═══════════════════════════════════════════════╝%reset%
-echo.
-
-endlocal
 set /p gpu_choice=Enter number corresponding to your GPU: 
 
 REM GPU menu - Backend
-REM Set the GPU choice in an environment variable for choise callback
 set "GPU_CHOICE=%gpu_choice%"
 
 REM Check the user's response
 if "%gpu_choice%"=="1" (
-    REM Install pip requirements
     echo %blue_bg%[%time%]%reset% %blue_fg_strong%[INFO]%reset% GPU choice set to NVIDIA
     goto :install_xtts_pre
 ) else if "%gpu_choice%"=="2" (
@@ -275,7 +269,7 @@ if "%gpu_choice%"=="1" (
 ) else if "%gpu_choice%"=="0" (
     goto :home
 ) else (
-    echo %red_bg%[%time%]%reset% %red_fg_strong%[ERROR] Invalid number. Please enter a valid number.%reset%
+    echo %red_bg%[%time%]%reset% %red_fg_strong%[ERROR] Invalid number.%reset%
     pause
     goto :install_xtts
 )
